@@ -7,6 +7,10 @@ public class Bullet : MonoBehaviour
     public float moveSpeed, lifeTime;
 
     public Rigidbody rig;
+
+    public GameObject impactEffect;
+
+    public int damage;
     
     void Start()
     {
@@ -27,6 +31,13 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.tag == "Enemigo")
+        {
+            other.gameObject.GetComponent<EnemyController>().DamageEnemy(damage);
+        }
+
+
         Destroy(gameObject);
+        Instantiate(impactEffect, transform.position, transform.rotation);
     }
 }
