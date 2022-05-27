@@ -22,7 +22,10 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheckpoint;
 
     public LayerMask Ground;
-    
+
+    public GameObject bullet;
+
+    public Transform firePoint;
     
     void Start()
     {
@@ -67,6 +70,13 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
 
         camTransform.rotation = Quaternion.Euler(camTransform.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
+
+        //shooting
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(bullet, firePoint.position, firePoint.rotation);
+        }
 
 
 
